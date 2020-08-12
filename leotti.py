@@ -4,7 +4,7 @@ from constants import WIDTH, HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT
 
 
 class Leotti:
-    vel = 3
+    vel = 5
 
     def __init__(self, x, y):
         self.x = x
@@ -24,7 +24,7 @@ class Leotti:
         return self.y + 2
 
     def bottom(self):
-        return self.y + PLAYER_HEIGHT - 4
+        return self.y + PLAYER_HEIGHT - 5
 
     def left(self):
         return self.x + 3
@@ -33,6 +33,4 @@ class Leotti:
         return self.x + PLAYER_WIDTH - 3
 
     def draw(self):
-        pyxel.rect(self.x, self.y, PLAYER_WIDTH,
-                   PLAYER_HEIGHT, pyxel.COLOR_GREEN)
         pyxel.blt(self.x, self.y, 0, 0, 0, 16, 16, pyxel.COLOR_ORANGE)
