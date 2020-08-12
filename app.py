@@ -4,6 +4,7 @@ from pyxel import text
 from constants import HEIGHT, WIDTH
 from leotti import Leotti
 from wall import Wall
+from combination_wall import ConbinationWall
 
 
 class App:
@@ -40,9 +41,9 @@ class App:
 
     def init_wall(self):
         self.walls = [
-            Wall(WIDTH),
-            Wall(WIDTH + 70),
-            Wall(WIDTH + 130)
+            ConbinationWall(WIDTH),
+            ConbinationWall(WIDTH + 70),
+            ConbinationWall(WIDTH + 130)
         ]
 
     def draw(self):

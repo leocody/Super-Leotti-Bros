@@ -11,12 +11,12 @@ COUNTER = 2
 
 class Wall:
 
-    def __init__(self, x: int):
+    def __init__(self, x: int, y: int):
         self.vel = 3
         self.x: int = x
-        self.y: int = random.choice(pos)
+        self.y: int = y
         self.height = HEIGHT
-        self.width = random.randint(10, 30)
+        self.width = 10
         self.counter = COUNTER
 
     def move(self):
@@ -43,11 +43,9 @@ class Wall:
         else:
             return False
 
-    def reset(self):
+    def reset(self, y):
         self.x = WIDTH
-        self.y = random.choice(pos)
-        self.height = HEIGHT
-        self.width = random.randint(10, 20)
+        self.y = y
 
     def is_collision(self, leotti: Leotti):
 
