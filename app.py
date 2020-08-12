@@ -29,30 +29,27 @@ class App:
         if pyxel.btn(pyxel.KEY_UP):
             self.leotti.move_up()
 
-        if self.is_collision():
-            self.game_over = True
-        self.wall.move()
+        for wall in self.walls:
+            wall.move()
+            if wall.is_collision(self.leotti):
+                self.game_over = True
 
-        if self.wall.is_out_screen():
-            self.score += 1
-            self.init_wall()
+            if wall.is_out_screen():
+                self.score += 1
+                wall.reset()
 
     def init_wall(self):
-        self.wall = Wall(WIDTH)
-
-    def is_collision(self):
-
-        if self.wall.top() <= self.leotti.top() <= self.wall.bottom() and self.wall.left() <= self.leotti.left() <= self.wall.right():
-            return True
-        if self.wall.top() <= self.leotti.bottom() <= self.wall.bottom() and self.wall.left() <= self.leotti.right() <= self.wall.right():
-            return True
-
-        return False
+        self.walls = [
+            Wall(WIDTH),
+            Wall(WIDTH + 70),
+            Wall(WIDTH + 130)
+        ]
 
     def draw(self):
         pyxel.cls(0)
         self.leotti.draw()
-        self.wall.draw()
+        for wall in self.walls:
+            wall.draw()
         pyxel.text(0, 0, "Score :" + str(self.score), pyxel.COLOR_GREEN)
         if self.game_over:
             pyxel.text(50, HEIGHT / 2, "GAME OVER", pyxel.COLOR_ORANGE)
