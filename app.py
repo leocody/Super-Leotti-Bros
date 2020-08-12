@@ -1,9 +1,6 @@
-from random import randint
 import pyxel
-from pyxel import text
 from constants import HEIGHT, WIDTH
 from leotti import Leotti
-from wall import Wall
 from combination_wall import ConbinationWall
 
 

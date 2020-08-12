@@ -1,11 +1,6 @@
 from leotti import Leotti
-from random import randint
 import pyxel
-from constants import HEIGHT, WIDTH, PLAYER_HEIGHT, PLAYER_WIDTH
-import random
-
-
-pos = [-40, -40, -20, 30, 50, 40, 70, -90, -30]
+from constants import HEIGHT, WIDTH
 COUNTER = 2
 
 
@@ -16,7 +11,7 @@ class Wall:
         self.x: int = x
         self.y: int = y
         self.height = HEIGHT
-        self.width = 10
+        self.width = 25
         self.counter = COUNTER
 
     def move(self):

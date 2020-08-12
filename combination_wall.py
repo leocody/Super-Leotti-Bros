@@ -1,6 +1,7 @@
 from random import choice
 from wall import Wall
 import random
+from constants import HEIGHT, WIDTH
 
 MAP = [
     {"upper": -50, "lower": 108},  # local
@@ -15,19 +16,27 @@ MAP = [
 ]
 
 
+def create_map():
+    random_upper = random.randint(-128, -30)
+    random_lower = random_upper + 128 + 30
+    return {"upper": random_upper, "lower": random_lower}
+
+
 class ConbinationWall:
     def __init__(self, x):
         self.x = x
-        self.reset()
+        mapper = create_map()
+        self.upper = Wall(self.x, mapper["upper"])
+        self.lower = Wall(self.x, mapper["lower"])
 
     def draw(self):
         self.upper.draw()
         self.lower.draw()
 
     def reset(self):
-        choice = random.choice(MAP)
-        self.upper = Wall(self.x, choice["upper"])
-        self.lower = Wall(self.x, choice["lower"])
+        mapper = create_map()
+        self.upper = Wall(WIDTH, mapper["upper"])
+        self.lower = Wall(WIDTH, mapper["lower"])
 
     def is_collision(self, leotti):
         if self.upper.is_collision(leotti):
