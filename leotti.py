@@ -1,10 +1,11 @@
 import pyxel
 from pyxel import load
-from constants import WIDTH, HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT
+from constants import WIDTH, HEIGHT, PLAYER_WIDTH, PLAYER_HEIGHT, UP, DOWN
 
 
 class Leotti:
-    vel = 5
+    vel = 2
+    direction = 0
 
     def __init__(self, x, y):
         self.x = x
@@ -19,6 +20,15 @@ class Leotti:
         self.y += self.vel
         if HEIGHT - PLAYER_HEIGHT < self.y:
             self.y = HEIGHT - PLAYER_HEIGHT
+
+    def update(self):
+        if self.direction == UP:
+            self.move_up()
+        if self.direction == DOWN:
+            self.move_down()
+
+    def change_direction(self, direction):
+        self.direction = direction
 
     def top(self):
         return self.y + 2

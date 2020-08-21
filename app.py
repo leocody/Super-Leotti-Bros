@@ -1,5 +1,5 @@
 import pyxel
-from constants import HEIGHT, WIDTH
+from constants import HEIGHT, WIDTH, UP, DOWN
 from leotti import Leotti
 from combination_wall import ConbinationWall
 
@@ -22,10 +22,11 @@ class App:
         if pyxel.btnp(pyxel.KEY_Q):
             pyxel.quit()
         if pyxel.btn(pyxel.KEY_DOWN):
-            self.leotti.move_down()
+            self.leotti.change_direction(DOWN)
 
         if pyxel.btn(pyxel.KEY_UP):
-            self.leotti.move_up()
+            self.leotti.change_direction(UP)
+        self.leotti.update()
 
         for wall in self.walls:
             wall.move()
@@ -39,8 +40,7 @@ class App:
     def init_wall(self):
         self.walls = [
             ConbinationWall(WIDTH),
-            ConbinationWall(WIDTH + 70),
-            ConbinationWall(WIDTH + 130)
+            ConbinationWall(WIDTH + 100)
         ]
 
     def draw(self):
@@ -50,7 +50,7 @@ class App:
             wall.draw()
         pyxel.text(0, 0, "Score :" + str(self.score), pyxel.COLOR_GREEN)
         if self.game_over:
-            pyxel.text(50, HEIGHT / 2, "GAME OVER", pyxel.COLOR_ORANGE)
+            pyxel.text(50, HEIGHT / 2, "GAME OVER", pyxel.COLOR_LIGHTBLUE)
 
 
 App()

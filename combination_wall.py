@@ -15,10 +15,13 @@ MAP = [
     {"upper": -40, "lower": 118},  # local
 ]
 
+SPACE = 50
+START = WIDTH + 40
+
 
 def create_map():
-    random_upper = random.randint(-128, -30)
-    random_lower = random_upper + 128 + 30
+    random_upper = random.randint(-128, -SPACE)
+    random_lower = random_upper + 128 + SPACE
     return {"upper": random_upper, "lower": random_lower}
 
 
@@ -35,8 +38,9 @@ class ConbinationWall:
 
     def reset(self):
         mapper = create_map()
-        self.upper = Wall(WIDTH, mapper["upper"])
-        self.lower = Wall(WIDTH, mapper["lower"])
+        position = WIDTH + random.randint(15, 60)
+        self.upper = Wall(position, mapper["upper"])
+        self.lower = Wall(position, mapper["lower"])
 
     def is_collision(self, leotti):
         if self.upper.is_collision(leotti):
