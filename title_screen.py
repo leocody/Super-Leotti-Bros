@@ -1,13 +1,17 @@
 import pyxel
+import constants as C
 
 
 class TitleScreen:
     def __init__(self):
-        pass
+        pyxel.playm(1, loop=True)
+
+    def __del__(self):
+        pyxel.stop()
 
     def update(self):
         return
 
     def draw(self):
-        pyxel.text(50, 50, "SUPER LEOTTI BROS.", pyxel.COLOR_LIGHTBLUE)
-        pyxel.text(40, 40, "Press S key to start", pyxel.COLOR_LIGHTBLUE)
+        pyxel.blt(C.WIDTH / 2 - 15, 32, 1, 0, 0, 31, 17)
+        pyxel.text(50, 60, "Press S key to start", pyxel.COLOR_LIGHTBLUE)

@@ -19,6 +19,7 @@ class App:
     def update(self):
         if isinstance(self.current_screen, TitleScreen):
             if pyxel.btnp(pyxel.KEY_S) or pyxel.btnp(pyxel.GAMEPAD_1_START):
+                self.current_screen = None
                 self.current_screen = MainScreen()
 
         if isinstance(self.current_screen, MainScreen):
@@ -30,7 +31,7 @@ class App:
             pyxel.quit()
 
     def draw(self):
-        pyxel.cls(0)
+        pyxel.cls(pyxel.COLOR_GREEN)
         self.current_screen.draw()
 
 
