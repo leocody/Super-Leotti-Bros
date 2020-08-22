@@ -70,7 +70,7 @@ class MainScreen:
         pyxel.play(3, 2, loop=True)
 
     def draw(self):
-        pyxel.cls(0)
+
         self.leotti.draw()
         for coin in self.coins:
             coin.draw()

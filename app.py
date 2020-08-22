@@ -13,19 +13,25 @@ class App:
         pyxel.init(WIDTH, HEIGHT, caption="Super Leotti Bros.", fps=30)
         pyxel.load("assets/game_assets.pyxres")
 
-        self.main_screen = MainScreen()
-        self.title_screen = TitleScreen()
-        self.current_screen = self.main_screen
-        # self.current_screen = self.title_screen
+        self.current_screen = TitleScreen()
         pyxel.run(self.update, self.draw)
 
     def update(self):
+        if isinstance(self.current_screen, TitleScreen):
+            if pyxel.btnp(pyxel.KEY_S):
+                self.current_screen = MainScreen()
+
+        if isinstance(self.current_screen, MainScreen):
+            if self.current_screen.game_over and pyxel.btnp(pyxel.KEY_R):
+                self.current_screen = TitleScreen()
+
+        self.current_screen.update()
         if pyxel.btnp(pyxel.KEY_Q):
             pyxel.quit()
-        self.main_screen.update()
 
     def draw(self):
-        self.main_screen.draw()
+        pyxel.cls(0)
+        self.current_screen.draw()
 
 
 App()
