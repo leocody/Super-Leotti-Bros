@@ -52,4 +52,4 @@ class Wall:
         return False
 
     def draw(self):
-        pyxel.rect(self.x, self.y, self.width, self.height, pyxel.COLOR_ORANGE)
+        pyxel.blt(self.x, self.y, 0, 0, 16, 24, 143, colkey=pyxel.COLOR_BLACK)

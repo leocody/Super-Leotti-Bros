@@ -1,5 +1,5 @@
 import pyxel
-from constants import HEIGHT, WIDTH
+from constants import HEIGHT, WIDTH, NORMAL, SPECIAL
 from leotti import Leotti
 import random
 COUNTER = 2
@@ -9,13 +9,15 @@ class Coin:
     def __init__(self):
         self.vel = 3
         self.reset()
-        self.height = 6
-        self.width = 6
+        self.height = 14
+        self.width = 14
         self.counter = COUNTER
+        self.type = NORMAL
 
     def reset(self):
         self.x = WIDTH + 50
         self.y: int = random.randint(0, HEIGHT)
+        self.type = random.choice([NORMAL, NORMAL, NORMAL, SPECIAL])
 
     def move(self):
         self.counter -= 1
@@ -51,5 +53,16 @@ class Coin:
         return False
 
     def draw(self):
-        pyxel.circ(self.x + 3, self.y + 3, 2, pyxel.COLOR_YELLOW)
+        if self.type == NORMAL:
+            pyxel.blt(self.x, self.y, 0, 32, 0, 15,
+                      47, colkey=pyxel.COLOR_BLACK)
+        if self.type == SPECIAL:
+            pyxel.blt(self.x, self.y, 0, 48, 0, 63,
+                      15, colkey=pyxel.COLOR_BLACK)
         # pyxel.rect(self.x, self.y, self.width, self.height, pyxel.COLOR_NAVY)
+
+    def score(self):
+        if self.type == NORMAL:
+            return 2
+        elif self.type == SPECIAL:
+            return 4
