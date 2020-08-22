@@ -18,10 +18,10 @@ class MainScreen:
                 self.game_over = False
             return
 
-        if pyxel.btn(pyxel.KEY_DOWN):
+        if pyxel.btn(pyxel.KEY_DOWN) or pyxel.btn(pyxel.GAMEPAD_1_DOWN):
             self.leotti.change_direction(DOWN)
 
-        if pyxel.btn(pyxel.KEY_UP):
+        if pyxel.btn(pyxel.KEY_UP) or pyxel.btn(pyxel.GAMEPAD_1_UP):
             self.leotti.change_direction(UP)
         self.leotti.update()
 

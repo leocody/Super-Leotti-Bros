@@ -18,11 +18,11 @@ class App:
 
     def update(self):
         if isinstance(self.current_screen, TitleScreen):
-            if pyxel.btnp(pyxel.KEY_S):
+            if pyxel.btnp(pyxel.KEY_S) or pyxel.btnp(pyxel.GAMEPAD_1_START):
                 self.current_screen = MainScreen()
 
         if isinstance(self.current_screen, MainScreen):
-            if self.current_screen.game_over and pyxel.btnp(pyxel.KEY_R):
+            if self.current_screen.game_over and (pyxel.btnp(pyxel.KEY_R) or pyxel.btnp(pyxel.GAMEPAD_1_START)):
                 self.current_screen = TitleScreen()
 
         self.current_screen.update()
